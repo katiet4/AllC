@@ -72,13 +72,14 @@ int main(){
 		Tree(treeArr,root);
 		cout<<"keyT->";
 		for(int i = 0;i<vCode.size();i++){
-			cout<<vChar[i]<<":"<<vCode[i]<<"|";
+			cout<<vChar[i]<<"~"<<vCode[i]<<"|";
 		}
 		cout<<endl;
 		string inBin = HASH(vChar, vCode, line);
 		string BinInByte = makeByte(inBin);
 		string result = translateToNewString(BinInByte);
 		WriteToFile(result, nameW);
+		cout<<"successful"<< endl;
 	}
 	else{
 		string ByteLine = ReadingFileForDecrypt(nameR);
@@ -92,15 +93,15 @@ int main(){
 		
 		vector <string> s = split(Key,'|');
 		for (string i: s){
-			vector <string> s2 = split(i,':');
+			vector <string> s2 = split(i,'~');
 			vChar.push_back(s2[0][0]);
 			vCode.push_back(s2[1]);
 			//cout<<s2[0][0]<<" : "<<s2[1]<<",";
 		}
 		string inString = DEHASH(vChar, vCode, ByteLine);
 		
-		cout<<inString<<endl;/////////////    запись в файл организовать
 		WriteToFile(inString, nameW);
+		cout<<"successful"<< endl;
 	}
 	
 	
